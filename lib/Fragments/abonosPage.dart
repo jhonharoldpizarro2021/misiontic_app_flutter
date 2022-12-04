@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import '../navigationDrawer/navigationDrawer.dart';
 import '../routes/pageRoute.dart';
+import '../topBar/topBar.dart';
 
 class AbonosPage extends StatefulWidget {
   static const String routeName = '/abonosPage';
@@ -36,16 +37,6 @@ class _AbonosPageState extends State<AbonosPage> {
       'https://lfcali.edu.co/images/biosolido.jpg'
     ];
     int innE = 0;
-    var _enlaces2 = [
-      'compost',
-      'vermicompost',
-      'turba',
-      'enmienda',
-      'cenizas',
-      'biol',
-      'biofertilizantes',
-      'biosolido'
-    ];
     var _enlaces = [
       PageRoutes.compost,
       PageRoutes.vermicompost,
@@ -57,14 +48,13 @@ class _AbonosPageState extends State<AbonosPage> {
       PageRoutes.biosolidos
     ];
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tipos de Abono'),
-      ),
+      appBar: AppBar('lib/images/logo_App.jpg', 'Tipos de Abono'),
       drawer: NavigationDrawer(),
       body: GridView.count(
         // Create a grid with 2 columns. If you change the scrollDirection to
         // horizontal, this produces 2 rows.
         crossAxisCount: 2,
+
         // Generate 100 widgets that display their index in the List.
         children: List.generate(_items.length, (int index) {
           String names;
@@ -87,14 +77,14 @@ class _AbonosPageState extends State<AbonosPage> {
           }
           return Card(
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
             margin: const EdgeInsets.all(15),
             elevation: 10,
             child: InkWell(
               onTap: () => Navigator.pushReplacementNamed(context, url),
               child: ClipRRect(
                 // Los bordes del contenido del card se cortan usando BorderRadius
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(0),
                 // EL widget hijo que será recortado segun la propiedad anterior
                 child: Column(
                   children: <Widget>[
@@ -110,7 +100,7 @@ class _AbonosPageState extends State<AbonosPage> {
 
                     // Usamos Container para el contenedor de la descripción
                     Container(
-                      padding: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: Text(
                         names,
                         style: const TextStyle(
