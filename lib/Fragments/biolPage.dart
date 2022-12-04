@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../navigationDrawer/navigationDrawer.dart';
+import '../widgets/createPageContent.dart';
 
 class BiolPage extends StatelessWidget {
   static const String routeName = '/biolPage';
@@ -9,10 +10,12 @@ class BiolPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Biol"),
-        ),
-        drawer: NavigationDrawer(),
-        body: const Center(child: Text("This is biol page")));
+      appBar: AppBar(
+        title: const Text("Biol"),
+      ),
+      drawer: NavigationDrawer(),
+      body: createPageContent('https://lfcali.edu.co/images/biol.jpg', 'BIOL',
+          'El Biol es un excelente abono foliar. El Biol sirve para que las plantas estén verdes y den buenos frutos como papa, maíz, trigo, haba, hortalizas y frutales. El Biol se prepara con diferentes huanos que tiene que fermentar durante dos a tres meses en un bidón de plástico.'),
+    );
   }
 }

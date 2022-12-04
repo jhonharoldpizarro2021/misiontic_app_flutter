@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../navigationDrawer/navigationDrawer.dart';
+import '../widgets/createPageContent.dart';
 
 class EnmiendaPage extends StatelessWidget {
   static const String routeName = '/enmiendaPage';
@@ -9,10 +10,14 @@ class EnmiendaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Enmienda"),
-        ),
-        drawer: NavigationDrawer(),
-        body: const Center(child: Text("This is enmienda page")));
+      appBar: AppBar(
+        title: const Text("Enmienda Organica"),
+      ),
+      drawer: NavigationDrawer(),
+      body: createPageContent(
+          'https://lfcali.edu.co/images/enmienda.jpg',
+          'ENMIENDA ORGANICA',
+          'La turba es un material orgánico, de color pardo oscuro y rico en carbono.​​ Está formada por una masa esponjosa y ligera en la que aún se aprecian los componentes vegetales que la originaron. Se emplea como combustible y en la obtención de abonos orgánicos. La turba es un producto mineral.'),
+    );
   }
 }

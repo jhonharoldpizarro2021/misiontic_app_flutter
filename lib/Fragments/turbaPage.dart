@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../navigationDrawer/navigationDrawer.dart';
+import '../widgets/createPageContent.dart';
 
 class TurbaPage extends StatelessWidget {
   static const String routeName = '/turbaPage';
@@ -9,10 +10,12 @@ class TurbaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Turba"),
-        ),
-        drawer: NavigationDrawer(),
-        body: const Center(child: Text("This is turba page")));
+      appBar: AppBar(
+        title: const Text("Turba"),
+      ),
+      drawer: NavigationDrawer(),
+      body: createPageContent('https://lfcali.edu.co/images/turba.jpg', 'TURBA',
+          'La turba es un material orgánico, de color pardo oscuro y rico en carbono.​​ Está formada por una masa esponjosa y ligera en la que aún se aprecian los componentes vegetales que la originaron. Se emplea como combustible y en la obtención de abonos orgánicos. La turba es un producto mineral.'),
+    );
   }
 }
