@@ -3,16 +3,16 @@
 import 'package:flutter/material.dart';
 import '../navigationDrawer/navigationDrawer.dart';
 
-class EventPage extends StatelessWidget {
-  static const String routeName = '/eventPage';
+class TurbaPage extends StatelessWidget {
+  static const String routeName = '/turbaPage';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Events"),
+          title: const Text("Turba"),
         ),
         drawer: NavigationDrawer(),
-        body: const Center(child: Text("Hey! this is events list page")));
+        body: const Center(child: Text("This is turba page")));
   }
 }

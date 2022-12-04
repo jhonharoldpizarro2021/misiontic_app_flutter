@@ -4,9 +4,17 @@ import 'package:flutter/material.dart';
 //import 'home.dart';
 import 'Fragments/homePage.dart';
 import 'Fragments/contactPage.dart';
-import 'Fragments/eventPage.dart';
 import 'Fragments/profilePage.dart';
 import 'Fragments/notificationPage.dart';
+import 'Fragments/abonosPage.dart';
+import 'Fragments/compostPage.dart';
+import 'Fragments/vermicompostPage.dart';
+import 'Fragments/turbaPage.dart';
+import 'Fragments/enmiendaPage.dart';
+import 'Fragments/cenizaPage.dart';
+import 'Fragments/biolPage.dart';
+import 'Fragments/BiofertilizantesPage.dart';
+import 'Fragments/biosolidosPage.dart';
 import 'routes/pageRoute.dart';
 
 void main() => runApp(MyApp());
@@ -24,9 +32,17 @@ class MyApp extends StatelessWidget {
       routes: {
         PageRoutes.home: (context) => HomePage(),
         PageRoutes.contact: (context) => ContactPage(),
-        PageRoutes.event: (context) => EventPage(),
+        PageRoutes.abonos: (context) => AbonosPage(),
         PageRoutes.profile: (context) => ProfilePage(),
         PageRoutes.notification: (context) => NotificationPage(),
+        PageRoutes.compost: (context) => CompostPage(),
+        PageRoutes.vermicompost: (context) => VermicompostPage(),
+        PageRoutes.turba: (context) => TurbaPage(),
+        PageRoutes.enmienda: (context) => EnmiendaPage(),
+        PageRoutes.ceniza: (context) => CenizaPage(),
+        PageRoutes.biol: (context) => BiolPage(),
+        PageRoutes.biofertilizantes: (context) => BiofertilizantesPage(),
+        PageRoutes.biosolidos: (context) => BiosolidosPage(),
       },
     );
   }

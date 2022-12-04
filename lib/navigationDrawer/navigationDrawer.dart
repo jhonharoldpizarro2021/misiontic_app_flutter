@@ -28,9 +28,9 @@ class NavigationDrawer extends StatelessWidget {
           ),
           createDrawerBodyItem(
             icon: Icons.event_note,
-            text: 'Events',
+            text: 'Tipos de Abono',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.event),
+                Navigator.pushReplacementNamed(context, PageRoutes.abonos),
           ),
           const Divider(),
           createDrawerBodyItem(
