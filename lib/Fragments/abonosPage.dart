@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import '../navigationDrawer/navigationDrawer.dart';
 import '../routes/pageRoute.dart';
-import '../topBar/topBar.dart';
+import '../widgets/createAppBar.dart';
 
 class AbonosPage extends StatefulWidget {
   static const String routeName = '/abonosPage';
@@ -48,7 +48,9 @@ class _AbonosPageState extends State<AbonosPage> {
       PageRoutes.biosolidos
     ];
     return Scaffold(
-      appBar: AppBar('lib/images/logo_App.jpg', 'Tipos de Abono'),
+      appBar: AppBar(
+        title: const Text("Biofertilizantes"),
+      ),
       drawer: NavigationDrawer(),
       body: GridView.count(
         // Create a grid with 2 columns. If you change the scrollDirection to
