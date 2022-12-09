@@ -1,6 +1,8 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors
 
 //import 'package:flutter/material.dart';
+import '../Fragments/loginPage.dart';
+import '../Fragments/registroPage.dart';
 import '../Fragments/homePage.dart';
 import '../Fragments/contactPage.dart';
 import '../Fragments/abonosPage.dart';
@@ -16,6 +18,8 @@ import '../Fragments/biofertilizantesPage.dart';
 import '../Fragments/biosolidosPage.dart';
 
 class PageRoutes {
+  static const String login = LoginPage.routeName;
+  static const String registro = RegistroPage.routeName;
   static const String home = HomePage.routeName;
   static const String contact = ContactPage.routeName;
   static const String abonos = AbonosPage.routeName;

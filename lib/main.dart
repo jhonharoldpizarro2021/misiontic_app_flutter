@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 //import 'home.dart';
+import 'Fragments/loginPage.dart';
+import 'Fragments/registroPage.dart';
 import 'Fragments/homePage.dart';
 import 'Fragments/contactPage.dart';
 import 'Fragments/profilePage.dart';
@@ -21,15 +23,21 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  static const Color white = Color(0xFFFFFFFF);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'NavigationDrawer Demo',
       theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
-      ),
-      home: HomePage(),
+          primarySwatch: Colors.lightGreen,
+          appBarTheme: const AppBarTheme(
+            color: Color(0xFFFFFFFF),
+          )),
+      home: LoginPage(),
       routes: {
+        PageRoutes.login: (context) => LoginPage(),
+        PageRoutes.registro: (context) => RegistroPage(),
         PageRoutes.home: (context) => HomePage(),
         PageRoutes.contact: (context) => ContactPage(),
         PageRoutes.abonos: (context) => AbonosPage(),

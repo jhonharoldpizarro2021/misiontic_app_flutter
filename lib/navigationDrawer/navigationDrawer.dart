@@ -32,7 +32,6 @@ class NavigationDrawer extends StatelessWidget {
             onTap: () =>
                 Navigator.pushReplacementNamed(context, PageRoutes.abonos),
           ),
-          const Divider(),
           createDrawerBodyItem(
             icon: Icons.notifications_active,
             text: 'Notifications',
@@ -45,6 +44,7 @@ class NavigationDrawer extends StatelessWidget {
             onTap: () =>
                 Navigator.pushReplacementNamed(context, PageRoutes.contact),
           ),
+          const Divider(),
           ListTile(
             title: const Text('App version 1.0.0'),
             onTap: () {},

@@ -48,15 +48,38 @@ class _AbonosPageState extends State<AbonosPage> {
       PageRoutes.biosolidos
     ];
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: const Text("Biofertilizantes"),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              'lib/images/logo_App.jpg',
+              fit: BoxFit.contain,
+              height: 32,
+            ),
+            Container(
+                padding: const EdgeInsets.all(8.0),
+                child: const Text('Tipos de Abono')),
+          ],
+        ),
+        /* actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: 'Regresar',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('This is a snackbar')));
+            },
+          ),
+        ], */
       ),
       drawer: NavigationDrawer(),
       body: GridView.count(
+        padding: const EdgeInsets.all(15),
         // Create a grid with 2 columns. If you change the scrollDirection to
         // horizontal, this produces 2 rows.
         crossAxisCount: 2,
-
         // Generate 100 widgets that display their index in the List.
         children: List.generate(_items.length, (int index) {
           String names;

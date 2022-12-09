@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../navigationDrawer/navigationDrawer.dart';
+import '../routes/pageRoute.dart';
 import '../widgets/createPageContent.dart';
 
 class TurbaPage extends StatelessWidget {
@@ -10,8 +11,29 @@ class TurbaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: const Text("Turba"),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              'lib/images/logo_App.jpg',
+              fit: BoxFit.contain,
+              height: 32,
+            ),
+            Container(
+                padding: const EdgeInsets.all(8.0), child: const Text('Turba')),
+          ],
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: 'Regresar',
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, PageRoutes.abonos);
+            },
+          ),
+        ],
       ),
       drawer: NavigationDrawer(),
       body: createPageContent('https://lfcali.edu.co/images/turba.jpg', 'TURBA',
