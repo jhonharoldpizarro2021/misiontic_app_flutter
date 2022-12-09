@@ -45,9 +45,11 @@ class NavigationDrawer extends StatelessWidget {
                 Navigator.pushReplacementNamed(context, PageRoutes.contact),
           ),
           const Divider(),
-          ListTile(
-            title: const Text('App version 1.0.0'),
-            onTap: () {},
+          createDrawerBodyItem(
+            icon: Icons.exit_to_app,
+            text: 'Salir',
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, PageRoutes.login),
           ),
         ],
       ),
