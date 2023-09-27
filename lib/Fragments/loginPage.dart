@@ -57,7 +57,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Form(
       key: _formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +117,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                //backgroundColor: Colors.green,
+                backgroundColor: Colors.white,
                 elevation: 3,
                 minimumSize: const Size(100, 40),
               ),
@@ -135,7 +135,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 Navigator.pushReplacementNamed(context, PageRoutes.registro);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
+                backgroundColor: Colors.lightGreen,
                 elevation: 3,
                 minimumSize: const Size(100, 40),
               ),

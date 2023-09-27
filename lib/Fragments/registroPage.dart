@@ -98,12 +98,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     });
   }
 
+  void _goLogin() {
+    Navigator.pushReplacementNamed(context, PageRoutes.login);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -169,15 +173,31 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10),
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: ElevatedButton(
               onPressed: _crearUsuario,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
+                backgroundColor: Colors.white,
                 elevation: 3,
                 minimumSize: const Size(100, 40),
               ),
               child: const Text('Registrarse'),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 16.0),
+            child: Text('Ya tienes cuenta?'),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: ElevatedButton(
+              onPressed: _goLogin,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightGreen,
+                elevation: 3,
+                minimumSize: const Size(100, 40),
+              ),
+              child: const Text('Regresar'),
             ),
           ),
         ],
