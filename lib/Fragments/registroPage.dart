@@ -1,4 +1,6 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +57,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   String mensaje = "";
   final _user = TextEditingController();
   final _pswd = TextEditingController();
-
+  Timer? _timer;
   @override
   void dispose() {
     // Limpia el controlador cuando el Widget se descarte
@@ -65,11 +67,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 
   void _crearUsuario() async {
-    var msj = "Ingresa los datos";
+    var msj = "";
+    //outp(_user.text);
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _user.text, password: _pswd.text);
-      msj = "Usuario creado!";
+      msj = "Usuario creado!. Iniciando Session.";
+      _user.clear();
+      _pswd.clear();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         msj = "La contraseña no cumple con los valores minimos requeridos";
@@ -81,15 +86,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     }
     setState(() {
       mensaje = msj;
-      _user.clear();
-      _pswd.clear();
-      if (_formKey.currentState!.validate()) {
-        // Process data.
-        Navigator.pushReplacementNamed(context, PageRoutes.abonos);
-      }
+
+      //if (_formKey.currentState!.validate()) {
+      // Process data.
+
+      // }
+
       showDialog(
         context: context,
         builder: (context) {
+          _timer = Timer(const Duration(seconds: 3), () {
+            Navigator.pushReplacementNamed(context, PageRoutes.abonos);
+          });
           return AlertDialog(
             content: Text(mensaje),
           );
@@ -102,9 +110,25 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     Navigator.pushReplacementNamed(context, PageRoutes.login);
   }
 
+  String? _validateEmail(String? value) {
+    const pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
+        r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
+        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
+        r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
+        r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
+        r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
+        r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
+    final regex = RegExp(pattern);
+
+    return value!.isNotEmpty && !regex.hasMatch(value)
+        ? 'Por favor ingrese una dirección de correo valida'
+        : null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      autovalidateMode: AutovalidateMode.always,
       key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -129,21 +153,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: TextFormField(
+              controller: _user,
               decoration: const InputDecoration(
                 hintText: 'Ingrese su correo',
               ),
-              validator: (String? value) {
-                if (value == null || value.isEmpty) {
-                  return 'Por favor ingrese un correo valido';
-                }
-                return null;
-              },
+              validator: _validateEmail,
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: TextFormField(
-              controller: _user,
+              controller: _pswd,
               obscureText: true,
               decoration: const InputDecoration(
                 hintText: 'Ingrese su contraseña',
@@ -158,24 +178,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: TextFormField(
-              controller: _pswd,
-              obscureText: true,
-              decoration: const InputDecoration(
-                hintText: 'Confirme su contraseña',
-              ),
-              validator: (String? value) {
-                if (value == null || value.isEmpty) {
-                  return 'Por favor ingrese la contraseña';
-                }
-                return null;
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: ElevatedButton(
-              onPressed: _crearUsuario,
+              onPressed: () {
+                // Validate will return true if the form is valid, or false if
+                // the form is invalid.
+                if (_formKey.currentState!.validate()) {
+                  // Process data.
+                  _crearUsuario();
+                  //Navigator.pushReplacementNamed(context, PageRoutes.abonos);
+                }
+              },
+              //onPressed: _crearUsuario,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 elevation: 3,

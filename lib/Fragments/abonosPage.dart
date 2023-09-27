@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, library_private_types_in_public_api, no_leading_underscores_for_local_identifiers
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../navigationDrawer/navigationDrawer.dart';
 import '../routes/pageRoute.dart';
@@ -14,6 +15,10 @@ class AbonosPage extends StatefulWidget {
 class _AbonosPageState extends State<AbonosPage> {
   @override
   Widget build(BuildContext context) {
+    if (FirebaseAuth.instance.currentUser == null) {
+      // signed out
+      Navigator.pushReplacementNamed(context, PageRoutes.login);
+    }
     int inn = 0;
     var _items = <String>[
       'Compost',
