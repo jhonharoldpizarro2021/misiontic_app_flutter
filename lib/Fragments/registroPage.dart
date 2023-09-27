@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
-
+import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 //import '../navigationDrawer/navigationDrawer.dart';
 import '../routes/pageRoute.dart';
@@ -10,6 +11,7 @@ class RegistroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, // set it to false
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Row(
@@ -49,6 +51,52 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final myController = TextEditingController();
+  String mensaje = "";
+  final _user = TextEditingController();
+  final _pswd = TextEditingController();
+
+  @override
+  void dispose() {
+    // Limpia el controlador cuando el Widget se descarte
+    _user.dispose();
+    _pswd.dispose();
+    super.dispose();
+  }
+
+  void _crearUsuario() async {
+    var msj = "Ingresa los datos";
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _user.text, password: _pswd.text);
+      msj = "Usuario creado!";
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        msj = "La contraseña no cumple con los valores minimos requeridos";
+      } else if (e.code == 'email-already-in-use') {
+        msj = "Usuario ya se encuentra creado!";
+      }
+    } catch (e) {
+      msj = "Ocurrio un error: $e";
+    }
+    setState(() {
+      mensaje = msj;
+      _user.clear();
+      _pswd.clear();
+      if (_formKey.currentState!.validate()) {
+        // Process data.
+        Navigator.pushReplacementNamed(context, PageRoutes.abonos);
+      }
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(mensaje),
+          );
+        },
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,20 +126,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: TextFormField(
               decoration: const InputDecoration(
-                hintText: 'Ingrese su nombre',
-              ),
-              validator: (String? value) {
-                if (value == null || value.isEmpty) {
-                  return 'Por favor ingrese su nombre';
-                }
-                return null;
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: TextFormField(
-              decoration: const InputDecoration(
                 hintText: 'Ingrese su correo',
               ),
               validator: (String? value) {
@@ -105,6 +139,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: TextFormField(
+              controller: _user,
               obscureText: true,
               decoration: const InputDecoration(
                 hintText: 'Ingrese su contraseña',
@@ -120,6 +155,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: TextFormField(
+              controller: _pswd,
               obscureText: true,
               decoration: const InputDecoration(
                 hintText: 'Confirme su contraseña',
@@ -135,14 +171,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           Padding(
             padding: const EdgeInsets.only(top: 10),
             child: ElevatedButton(
-              onPressed: () {
-                // Validate will return true if the form is valid, or false if
-                // the form is invalid.
-                if (_formKey.currentState!.validate()) {
-                  // Process data.
-                  Navigator.pushReplacementNamed(context, PageRoutes.abonos);
-                }
-              },
+              onPressed: _crearUsuario,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
                 elevation: 3,

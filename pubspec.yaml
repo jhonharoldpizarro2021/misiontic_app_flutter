@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   infinite_listview: ^1.1.0
   very_good_infinite_list: ^0.7.0
+  firebase_auth: ^4.10.0
+  firebase_core: ^2.16.0
 
 dev_dependencies:
   flutter_test:

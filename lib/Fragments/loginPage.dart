@@ -10,6 +10,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, // set it to false
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Row(
@@ -24,6 +25,7 @@ class LoginPage extends StatelessWidget {
         ),
       ),
       //drawer: NavigationDrawer(),
+
       body: Container(
         padding:
             const EdgeInsets.only(left: 40, right: 40, top: 20, bottom: 20),

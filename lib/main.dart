@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors
-
+//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 //import 'home.dart';
 import 'Fragments/loginPage.dart';
@@ -19,7 +20,13 @@ import 'Fragments/BiofertilizantesPage.dart';
 import 'Fragments/biosolidosPage.dart';
 import 'routes/pageRoute.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
+}
+
+//void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

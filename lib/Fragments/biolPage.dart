@@ -11,6 +11,7 @@ class BiolPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, // set it to false
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Row(
@@ -35,7 +36,7 @@ class BiolPage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: NavigationDrawer(),
+      drawer: NavigationDrawer2(),
       body: createPageContent('https://lfcali.edu.co/images/biol.jpg', 'BIOL',
           'El Biol es un excelente abono foliar. El Biol sirve para que las plantas estén verdes y den buenos frutos como papa, maíz, trigo, haba, hortalizas y frutales. El Biol se prepara con diferentes huanos que tiene que fermentar durante dos a tres meses en un bidón de plástico.'),
     );

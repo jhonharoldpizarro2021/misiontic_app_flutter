@@ -9,11 +9,12 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: false, // set it to false
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
           title: const Text("My Profile"),
         ),
-        drawer: NavigationDrawer(),
+        drawer: NavigationDrawer2(),
         body: const Center(child: Text("This is profile page")));
   }
 }

@@ -11,6 +11,7 @@ class TurbaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, // set it to false
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Row(
@@ -35,7 +36,7 @@ class TurbaPage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: NavigationDrawer(),
+      drawer: NavigationDrawer2(),
       body: createPageContent('https://lfcali.edu.co/images/turba.jpg', 'TURBA',
           'La turba es un material orgánico, de color pardo oscuro y rico en carbono.​​ Está formada por una masa esponjosa y ligera en la que aún se aprecian los componentes vegetales que la originaron. Se emplea como combustible y en la obtención de abonos orgánicos. La turba es un producto mineral.'),
     );

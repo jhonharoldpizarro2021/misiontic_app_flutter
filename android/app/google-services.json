@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "32005318489",
+    "firebase_url": "https://captura-coordenadas-default-rtdb.firebaseio.com",
+    "project_id": "captura-coordenadas",
+    "storage_bucket": "captura-coordenadas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32005318489:android:4c251726277c4636834e48",
+        "android_client_info": {
+          "package_name": "com.example.flutter_captura_coordenadas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_A-eBBTAgjSAwOR-wQ8lf967YWs3nuOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32005318489:android:e7b02a4181862902834e48",
+        "android_client_info": {
+          "package_name": "com.example.misiontic_app_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_A-eBBTAgjSAwOR-wQ8lf967YWs3nuOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

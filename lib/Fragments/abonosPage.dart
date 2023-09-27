@@ -48,6 +48,7 @@ class _AbonosPageState extends State<AbonosPage> {
       PageRoutes.biosolidos
     ];
     return Scaffold(
+      resizeToAvoidBottomInset: false, // set it to false
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Row(
@@ -74,7 +75,7 @@ class _AbonosPageState extends State<AbonosPage> {
           ),
         ], */
       ),
-      drawer: NavigationDrawer(),
+      drawer: NavigationDrawer2(),
       body: GridView.count(
         padding: const EdgeInsets.all(15),
         // Create a grid with 2 columns. If you change the scrollDirection to

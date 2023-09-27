@@ -6,7 +6,7 @@ import '../routes/pageRoute.dart';
 import '../widgets/createDrawerBodyItem.dart';
 import '../widgets/createDrawerHeader.dart';
 
-class NavigationDrawer extends StatelessWidget {
+class NavigationDrawer2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -18,7 +18,7 @@ class NavigationDrawer extends StatelessWidget {
             icon: Icons.home,
             text: 'Home',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.home),
+                Navigator.pushReplacementNamed(context, PageRoutes.abonos),
           ),
           createDrawerBodyItem(
             icon: Icons.account_circle,

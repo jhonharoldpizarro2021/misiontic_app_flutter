@@ -11,6 +11,7 @@ class BiosolidosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, // set it to false
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: Row(
@@ -36,7 +37,7 @@ class BiosolidosPage extends StatelessWidget {
           ),
         ],
       ),
-      drawer: NavigationDrawer(),
+      drawer: NavigationDrawer2(),
       body: createPageContent(
           'https://lfcali.edu.co/images/biosolido.jpg',
           'BIO SOLIDOS COMPUESTOS DE AGUAS NEGRAS',
