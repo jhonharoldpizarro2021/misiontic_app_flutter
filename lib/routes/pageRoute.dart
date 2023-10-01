@@ -16,6 +16,8 @@ import '../Fragments/cenizaPage.dart';
 import '../Fragments/biolPage.dart';
 import '../Fragments/biofertilizantesPage.dart';
 import '../Fragments/biosolidosPage.dart';
+import '../Fragments/productsPage.dart';
+import '../Fragments/ubicacionesPage.dart';
 
 class PageRoutes {
   static const String login = LoginPage.routeName;
@@ -33,4 +35,6 @@ class PageRoutes {
   static const String biol = BiolPage.routeName;
   static const String biofertilizantes = BiofertilizantesPage.routeName;
   static const String biosolidos = BiosolidosPage.routeName;
+  static const String productos = ProductsPage.routeName;
+  static const String ubicaciones = UbicacionesPage.routeName;
 }

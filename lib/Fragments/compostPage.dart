@@ -32,7 +32,7 @@ class CompostPage extends StatelessWidget {
             icon: const Icon(Icons.arrow_back),
             tooltip: 'Regresar',
             onPressed: () {
-              Navigator.pushReplacementNamed(context, PageRoutes.abonos);
+              Navigator.pushReplacementNamed(context, PageRoutes.productos);
             },
           ),
         ],

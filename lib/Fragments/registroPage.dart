@@ -1,6 +1,7 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
 import 'dart:async';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,15 @@ class RegistroPage extends StatelessWidget {
             ),
           ],
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: 'Regresar',
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, PageRoutes.login);
+            },
+          ),
+        ],
       ),
       //drawer: NavigationDrawer(),
       body: Container(
@@ -53,11 +63,11 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final myController = TextEditingController();
   String mensaje = "";
   final _user = TextEditingController();
   final _pswd = TextEditingController();
   Timer? _timer;
+
   @override
   void dispose() {
     // Limpia el controlador cuando el Widget se descarte
@@ -66,7 +76,25 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     super.dispose();
   }
 
+  void _validateConection() async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      // I am not connected to any network.
+      setState(() {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+              content: Text('No cuentas con conexion a Internet'),
+            );
+          },
+        );
+      });
+    }
+  }
+
   void _crearUsuario() async {
+    _validateConection();
     var msj = "";
     //outp(_user.text);
     try {
@@ -86,17 +114,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     }
     setState(() {
       mensaje = msj;
-
-      //if (_formKey.currentState!.validate()) {
-      // Process data.
-
-      // }
-
       showDialog(
         context: context,
         builder: (context) {
           _timer = Timer(const Duration(seconds: 3), () {
-            Navigator.pushReplacementNamed(context, PageRoutes.abonos);
+            Navigator.pushReplacementNamed(context, PageRoutes.home);
           });
           return AlertDialog(
             content: Text(mensaje),

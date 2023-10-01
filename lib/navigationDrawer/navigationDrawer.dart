@@ -18,19 +18,19 @@ class NavigationDrawer2 extends StatelessWidget {
             icon: Icons.home,
             text: 'Home',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.abonos),
+                Navigator.pushReplacementNamed(context, PageRoutes.home),
           ),
           createDrawerBodyItem(
-            icon: Icons.account_circle,
-            text: 'Profile',
+            icon: Icons.map,
+            text: 'Ubicaciones',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.profile),
+                Navigator.pushReplacementNamed(context, PageRoutes.ubicaciones),
           ),
           createDrawerBodyItem(
             icon: Icons.event_note,
-            text: 'Tipos de Abono',
+            text: 'Productos',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.abonos),
+                Navigator.pushReplacementNamed(context, PageRoutes.productos),
           ),
           createDrawerBodyItem(
             icon: Icons.notifications_active,
@@ -40,7 +40,7 @@ class NavigationDrawer2 extends StatelessWidget {
           ),
           createDrawerBodyItem(
             icon: Icons.contact_phone,
-            text: 'Contact Info',
+            text: 'Chat Info',
             onTap: () =>
                 Navigator.pushReplacementNamed(context, PageRoutes.contact),
           ),

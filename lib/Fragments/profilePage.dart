@@ -12,9 +12,10 @@ class ProfilePage extends StatelessWidget {
         resizeToAvoidBottomInset: false, // set it to false
         backgroundColor: Colors.grey[200],
         appBar: AppBar(
-          title: const Text("My Profile"),
+          title: const Text("Ubicaciones"),
         ),
         drawer: NavigationDrawer2(),
-        body: const Center(child: Text("This is profile page")));
+        body: const Center(
+            child: Text("Aqui van la Ubicaciones detectadas autmaticamente")));
   }
 }

@@ -2,6 +2,11 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../domain/producto_controller.dart';
+import '../widgets/listProducts.dart';
+
 import '../navigationDrawer/navigationDrawer.dart';
 import '../routes/pageRoute.dart';
 //import '../widgets/createAppBar.dart';
@@ -19,6 +24,7 @@ class _AbonosPageState extends State<AbonosPage> {
       // signed out
       Navigator.pushReplacementNamed(context, PageRoutes.login);
     }
+    Get.put(ProductoController());
     int inn = 0;
     var _items = <String>[
       'Compost',
@@ -66,7 +72,7 @@ class _AbonosPageState extends State<AbonosPage> {
             ),
             Container(
                 padding: const EdgeInsets.all(8.0),
-                child: const Text('Tipos de Abono')),
+                child: const Text('Productos')),
           ],
         ),
         /* actions: <Widget>[
@@ -81,72 +87,7 @@ class _AbonosPageState extends State<AbonosPage> {
         ], */
       ),
       drawer: NavigationDrawer2(),
-      body: GridView.count(
-        padding: const EdgeInsets.all(15),
-        // Create a grid with 2 columns. If you change the scrollDirection to
-        // horizontal, this produces 2 rows.
-        crossAxisCount: 2,
-        // Generate 100 widgets that display their index in the List.
-        children: List.generate(_items.length, (int index) {
-          String names;
-          if (_items.isNotEmpty) {
-            names = _items[inn++];
-          } else {
-            names = '';
-          }
-          String fotos;
-          if (_imgs.isNotEmpty) {
-            fotos = _imgs[innf++];
-          } else {
-            fotos = '';
-          }
-          String url;
-          if (_enlaces.isNotEmpty) {
-            url = _enlaces[innE++];
-          } else {
-            url = '';
-          }
-          return Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
-            margin: const EdgeInsets.all(15),
-            elevation: 10,
-            child: InkWell(
-              onTap: () => Navigator.pushReplacementNamed(context, url),
-              child: ClipRRect(
-                // Los bordes del contenido del card se cortan usando BorderRadius
-                borderRadius: BorderRadius.circular(0),
-                // EL widget hijo que será recortado segun la propiedad anterior
-                child: Column(
-                  children: <Widget>[
-                    // Usamos el widget Image para mostrar una imagen
-                    AspectRatio(
-                      aspectRatio: 4 / 3,
-                      child: Image.network(
-                        // Como queremos traer una imagen desde un url usamos NetworkImage
-                        fotos,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-
-                    // Usamos Container para el contenedor de la descripción
-                    Container(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Text(
-                        names,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        }),
-      ),
+      body: const ProductosWidget(),
     );
   }
 }
