@@ -86,6 +86,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     }
   }
 
+  // https://firebase.flutter.dev/docs/auth/usage/#persisting-authentication-state
   void _authUsuario() async {
     var msj = "Validando datos ...";
     try {
@@ -94,6 +95,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       msj = "Usuario Autenticado!. Iniciando Session.";
       _user.clear();
       _pswd.clear();
+      FirebaseAuth auth = FirebaseAuth.instance;
+      auth.setPersistence(Persistence.SESSION);
     } on FirebaseAuthException catch (e) {
       if ((e.code == 'user-not-found') || (e.code == 'wrong-password')) {
         msj = "Usuario/Contraseña errados";

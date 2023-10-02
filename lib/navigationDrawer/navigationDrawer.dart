@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../routes/pageRoute.dart';
@@ -46,11 +47,13 @@ class NavigationDrawer2 extends StatelessWidget {
           ),
           const Divider(),
           createDrawerBodyItem(
-            icon: Icons.exit_to_app,
-            text: 'Salir',
-            onTap: () =>
-                Navigator.pushReplacementNamed(context, PageRoutes.login),
-          ),
+              icon: Icons.exit_to_app,
+              text: 'Salir',
+              onTap: () => {
+                    FirebaseAuth.instance.signOut(),
+                    // ignore: use_build_context_synchronously
+                    Navigator.pushReplacementNamed(context, PageRoutes.login),
+                  }),
         ],
       ),
     );

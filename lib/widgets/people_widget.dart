@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:geolocator_platform_interface/src/models/position.dart';
 import 'package:loggy/loggy.dart';
 
 import '../domain/geo_controller.dart';
